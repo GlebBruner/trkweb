@@ -1,0 +1,157 @@
+<project>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ua.nure</groupId>
+    <artifactId>trkweb</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>trkweb</name>
+
+    <properties>
+        <version.java>1.8</version.java>
+        <version.h2>1.4.196</version.h2>
+        <version.postgresql>42.0.0</version.postgresql>
+        <version.junit>4.12</version.junit>
+
+    </properties>
+
+    <modules>
+
+        <module>model</module>
+        <module>logic</module>
+
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>memory</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <database.driverClassName>org.h2.Driver</database.driverClassName>
+                <database.url>jdbc:h2:mem:testdb;INIT=runscript from 'classpath:/scripts/create.sql'</database.url>
+                <database.user>sa</database.user>
+                <database.password></database.password>
+            </properties>
+
+            <dependencies>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <version>${version.h2}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>server</id>
+            <properties>
+                <database.driverClassName>org.postgresql.Driver</database.driverClassName>
+                <database.url></database.url>
+                <database.user></database.user>
+                <database.password></database.password>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>${version.postgresql}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>properties-maven-plugin</artifactId>
+                    <version>1.0.0</version>
+                    <executions>
+                        <execution>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>write-active-profile-properties</goal>
+                            </goals>
+                            <configuration>
+                                <outputFile>
+                                    ./logic/src/main/java/resources/db.properties
+                                </outputFile>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>3.0.0-SNAPSHOT</version>
+
+                    <!--<dependencies>
+                        <dependency>
+                            <groupId></groupId>
+                            <artifactId></artifactId>
+                        </dependency>
+                    </dependencies>-->
+
+                    <configuration>
+                        <driver>${database.driverClassName}</driver>
+                        <url>${database.url}</url>
+                        <user>${database.user}</user>
+                        <password>${database.password}</password>
+                    </configuration>
+
+                    <executions>
+                        <execution>
+                            <!--<phase>???</phase>-->
+                            <goals>
+                                <goal>execute</goal>
+                            </goals>
+                            <configuration>
+                                <srcFiles>
+                                    <srcFile>/src/main/resources/scripts/create.sql</srcFile>
+                                </srcFiles>
+                            </configuration>
+                        </execution>
+                    </executions>
+
+
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.6.0</version>
+                    <configuration>
+                        <source>${version.java}</source>
+                        <target>${version.java}</target>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+
+        </pluginManagement>
+    </build>
+
+    <dependencyManagement>
+
+        <dependencies>
+            
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+            </dependency>
+
+
+        </dependencies>
+
+
+    </dependencyManagement>
+
+
+</project>
