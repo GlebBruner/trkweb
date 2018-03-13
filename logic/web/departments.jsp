@@ -14,7 +14,7 @@
           <th>department_id</th>
           <th>department_name</th>
       </tr>
-      <c:forEach var = "department" items="${allDepartments}">
+      <c:forEach var = "department" items='${allDepartments}'>
           <tr>
               <td><c:out value="${department.id}"/></td>
               <td><c:out value="${department.name}"/></td>

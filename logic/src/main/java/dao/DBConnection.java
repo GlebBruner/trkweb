@@ -1,5 +1,7 @@
 package dao;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,6 +9,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnection {
+
+    private static final String DBMS_NAME = "h2";
 
     private static Connection connection;
 
@@ -18,12 +22,12 @@ public class DBConnection {
     static {
         Properties databaseProperties = new Properties();
         try {
-            databaseProperties.load(DBConnection.class.getResourceAsStream("db.properties"));
-            JDBC_DRIVER = databaseProperties.getProperty("db.driverClass");
-            DB_URL = databaseProperties.getProperty("db.url");
-            USER = databaseProperties.getProperty("db.user");
-            PASSWORD = databaseProperties.getProperty("db.password");
-        } catch (IOException e) {
+            databaseProperties.load(new FileInputStream(new File( "/home/gleb/IdeaProjects/test/trkweb/logic/src/main/resources/h2.properties")));
+            JDBC_DRIVER = databaseProperties.getProperty("database.DriverClassName");
+            DB_URL = databaseProperties.getProperty("database.Url");
+            USER = databaseProperties.getProperty("database.User");
+            PASSWORD = databaseProperties.getProperty("database.Password");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
