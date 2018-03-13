@@ -13,14 +13,13 @@
         <version.h2>1.4.196</version.h2>
         <version.postgresql>42.0.0</version.postgresql>
         <version.junit>4.12</version.junit>
-
+        <version.servlet>2.5</version.servlet>
+        <version.jstl>1.2</version.jstl>
     </properties>
 
     <modules>
-
         <module>model</module>
         <module>logic</module>
-
     </modules>
 
     <profiles>
@@ -73,13 +72,13 @@
                     <version>1.0.0</version>
                     <executions>
                         <execution>
-                            <phase>initialize</phase>
+                            <phase>generate-resources</phase>
                             <goals>
                                 <goal>write-active-profile-properties</goal>
                             </goals>
                             <configuration>
                                 <outputFile>
-                                    ./logic/src/main/java/resources/db.properties
+                                    /logic/src/main/java/resources/db.properties
                                 </outputFile>
                             </configuration>
                         </execution>
@@ -90,21 +89,18 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>sql-maven-plugin</artifactId>
                     <version>3.0.0-SNAPSHOT</version>
-
                     <!--<dependencies>
                         <dependency>
                             <groupId></groupId>
                             <artifactId></artifactId>
                         </dependency>
                     </dependencies>-->
-
                     <configuration>
                         <driver>${database.driverClassName}</driver>
                         <url>${database.url}</url>
                         <user>${database.user}</user>
                         <password>${database.password}</password>
                     </configuration>
-
                     <executions>
                         <execution>
                             <!--<phase>???</phase>-->
@@ -118,8 +114,6 @@
                             </configuration>
                         </execution>
                     </executions>
-
-
                 </plugin>
 
                 <plugin>
@@ -133,25 +127,28 @@
                 </plugin>
 
             </plugins>
-
         </pluginManagement>
     </build>
 
     <dependencyManagement>
-
         <dependencies>
-
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${version.junit}</version>
             </dependency>
-
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${version.servlet}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>${version.jstl}</version>
+            </dependency>
 
         </dependencies>
-
-
     </dependencyManagement>
-
 
 </project>
