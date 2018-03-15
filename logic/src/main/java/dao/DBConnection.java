@@ -22,7 +22,7 @@ public class DBConnection {
     static {
         Properties databaseProperties = new Properties();
         try {
-            databaseProperties.load(DBConnection.class.getClassLoader().getResourceAsStream("h2.properties"));
+            databaseProperties.load(DBConnection.class.getClassLoader().getResourceAsStream(DBMS_NAME + ".properties"));
             JDBC_DRIVER = databaseProperties.getProperty("database.DriverClassName");
             DB_URL = databaseProperties.getProperty("database.Url");
             USER = databaseProperties.getProperty("database.User");
