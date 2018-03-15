@@ -23,27 +23,15 @@ public class DepartmentServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String action = req.getServletPath();
-        System.out.println(action);
-
-        switch (action) {
-            case "/departments":
-                allDepartments(req, resp);
-                break;
-            case "/departments/delete":
-            deleteDepartment(req, resp);
-            break;
-        }
-
-
+        List<Department> allDepartments = departmentDao.getAll();
+        req.setAttribute("allDepartments", allDepartments);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("departments.jsp");
+        dispatcher.forward(req,resp);
     }
 
-    private void allDepartments (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Department> allDepartments = departmentDao.getAll();
-        request.setAttribute("allDepartments", allDepartments);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("departments.jsp");
-        dispatcher.forward(request,response);
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doDelete(req, resp);
     }
 
     private void deleteDepartment (HttpServletRequest request, HttpServletResponse response) throws IOException {

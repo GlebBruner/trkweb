@@ -19,8 +19,8 @@
               <td><c:out value="${department.id}"/></td>
               <td><c:out value="${department.name}"/></td>
               <td>
-                  <form>
-                      <button type="submit" formaction="/departments/delete?id=<c:out value="${department.id}"/>">Delete</button>
+                  <form method="">
+                      <input type="submit" >
                   </form>
               </td>
           </tr>

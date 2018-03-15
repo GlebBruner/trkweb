@@ -15,6 +15,7 @@
         <version.junit>4.12</version.junit>
         <version.servlet>2.5</version.servlet>
         <version.jstl>1.2</version.jstl>
+        <version.maven.war.plugin>2.6</version.maven.war.plugin>
     </properties>
 
     <modules>
@@ -71,6 +72,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
+                    <version>${version.maven.war.plugin}</version>
                 </plugin>
 
             </plugins>
@@ -90,7 +92,7 @@
                 <version>${version.servlet}</version>
             </dependency>
             <dependency>
-                <groupId>javax.servlet</groupId>
+                <groupId>jstl</groupId>
                 <artifactId>jstl</artifactId>
                 <version>${version.jstl}</version>
             </dependency>
