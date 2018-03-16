@@ -24,9 +24,8 @@ public class DepartmentServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Department> allDepartments = departmentDao.getAll();
-        req.setAttribute("allDepartments", allDepartments);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("departments.jsp");
-        dispatcher.forward(req,resp);
+//        req.setAttribute("allDepartments", allDepartments);
+//        dispatcher.forward(req,resp);
     }
 
     @Override
