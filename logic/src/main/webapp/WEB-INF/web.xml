@@ -15,10 +15,20 @@
         <servlet-class>controller.DepartmentServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>EmployeeServlet</servlet-name>
+        <servlet-class>controller.EmployeeServlet</servlet-class>
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>DepartmentsServlet</servlet-name>
         <url-pattern>/departments</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>EmployeeServlet</servlet-name>
+        <url-pattern>/employee</url-pattern>
     </servlet-mapping>
 
 

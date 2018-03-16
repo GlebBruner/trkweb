@@ -16,6 +16,11 @@
         <version.servlet>2.5</version.servlet>
         <version.jstl>1.2</version.jstl>
         <version.maven.war.plugin>2.6</version.maven.war.plugin>
+        <version.jackson>2.8.9</version.jackson>
+        <version.validation>1.1.0.Final</version.validation>
+        <version.hibernate.validator>6.0.7.Final</version.hibernate.validator>
+        <version.java.el>3.0.0</version.java.el>
+        <version.glassfish.web>2.2.6</version.glassfish.web>
     </properties>
 
     <modules>
@@ -26,38 +31,6 @@
     <build>
         <pluginManagement>
             <plugins>
-
-
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sql-maven-plugin</artifactId>
-                    <version>3.0.0-SNAPSHOT</version>
-                    <!--<dependencies>
-                        <dependency>
-                            <groupId></groupId>
-                            <artifactId></artifactId>
-                        </dependency>
-                    </dependencies>-->
-                    <!--<configuration>
-                        <driver>${database.driverClassName}</driver>
-                        <url>${database.url}</url>
-                        <user>${database.user}</user>
-                        <password>${database.password}</password>
-                    </configuration>-->
-                    <executions>
-                        <execution>
-                            <!--<phase>???</phase>-->
-                            <goals>
-                                <goal>execute</goal>
-                            </goals>
-                            <configuration>
-                                <srcFiles>
-                                    <srcFile>/src/main/resources/scripts/create.sql</srcFile>
-                                </srcFiles>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -81,27 +54,64 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--Testing dependencies-->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${version.junit}</version>
             </dependency>
+
+            <!--Servlet dependency-->
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
                 <version>${version.servlet}</version>
             </dependency>
-            <dependency>
-                <groupId>jstl</groupId>
-                <artifactId>jstl</artifactId>
-                <version>${version.jstl}</version>
-            </dependency>
+
+            <!--DBMS Dependencies-->
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${version.h2}</version>
             </dependency>
 
+            <!--Work with JSON-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${version.jackson}</version>
+            </dependency>
+
+            <!--Validation dependencies-->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${version.validation}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator-annotation-processor</artifactId>
+                <version>${version.hibernate.validator}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${version.hibernate.validator}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>${version.java.el}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.glassfish.web</groupId>
+                <artifactId>javax.el</artifactId>
+                <version>${version.glassfish.web}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
