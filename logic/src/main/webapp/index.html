@@ -4,15 +4,27 @@
     <meta charset="UTF-8">
     <title>Departments</title>
     <link rel="stylesheet" href="static/bootstrap.min.css">
-    <script src="static/jquery-3.3.1.min.js"></script>
-    <script src="static/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="row">
-    <div class="jumbotron col-8">
-        <h2>Department list</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="jumbotron col-8 offset-2">
+            <h2>Department list</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody class="department-container"></tbody>
+            </table>
+        </div>
     </div>
-
 </div>
+<script src="static/jquery-3.3.1.min.js"></script>
+<script src="static/bootstrap.min.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
